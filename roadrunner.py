@@ -1,12 +1,24 @@
-import sys
+import argparse
+from subprocess import call
+
 def main():
-    #a=len(sys.argv)
-    #if ( a < 3 ):
-      #  sys.stderr.write("E: usage :"+sys.argv[0]+"<argument variable>")
-      #  sys.stderr.flush()
-      #  exit(2)
-    #else:
-        scriptnam = sys.argv[1]
-        exec(open("./"+scriptnam +".py").read())
-if (__name__ == "__main__"):
-    main()
+    
+    #parser initialisation
+    parser = argparse.ArgumentParser()
+    
+    #adding arguments
+    parser.add_argument("-r","--reconissance",help="rus the reconissance script")
+    parser.add_argument("-p","--portscan",help="runs the portscanner")
+
+    #parsing args
+    args= parser.parse_args()
+     
+    if args.reconissance:
+         call("basicportscan.py")
+    elif args.portscan:
+        call("reconissance.py")
+    else:
+        pass
+
+if __name__ == "__main__":
+   main()
